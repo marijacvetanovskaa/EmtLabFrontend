@@ -2,19 +2,19 @@ import React, {useState} from 'react';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {Box, Button, Card, CardActions, CardContent, Typography} from "@mui/material";
-import EditBookDialog from "./EditBookDialog.jsx";
-import DeleteBookDialog from "./DeleteBookDialog.jsx";
+import EditCountryDialog from "./EditCountryDialog.jsx";
+import DeleteCountryDialog from "./DeleteCountryDialog.jsx";
 
-const BookCard = ({book, onEdit, onDelete}) => {
-    const [editBookDialogOpen, setEditBookDialogOpen] = useState(false);
-    const [deleteBookDialogOpen, setDeleteBookDialogOpen] = useState(false);
+const CountryCard = ({country, onEdit, onDelete}) => {
+    const [editCountryDialogOpen, setEditCountryDialogOpen] = useState(false);
+    const [deleteCountryDialogOpen, setDeleteCountryDialogOpen] = useState(false);
 
     return (
         <>
             <Card sx={{boxShadow: 3, borderRadius: 2, p: 1}}>
                 <CardContent>
-                    <Typography variant="h5">{book.name}</Typography>
-                    <Typography variant="subtitle2">{book.category}</Typography>
+                    <Typography variant="h5">{country.name}</Typography>
+                    <Typography variant="subtitle2">{country.continent}</Typography>
                 </CardContent>
                 <CardActions sx={{justifyContent: "space-between"}}>
                     <Box>
@@ -23,7 +23,7 @@ const BookCard = ({book, onEdit, onDelete}) => {
                             color="warning"
                             startIcon={<EditIcon/>}
                             sx={{mr: "0.25rem"}}
-                            onClick={() => setEditBookDialogOpen(true)}
+                            onClick={() => setEditCountryDialogOpen(true)}
                         >
                             Edit
                         </Button>
@@ -31,27 +31,27 @@ const BookCard = ({book, onEdit, onDelete}) => {
                             size="small"
                             color="error"
                             startIcon={<DeleteIcon/>}
-                            onClick={() => setDeleteBookDialogOpen(true)}
+                            onClick={() => setDeleteCountryDialogOpen(true)}
                         >
                             Delete
                         </Button>
                     </Box>
                 </CardActions>
             </Card>
-            <EditBookDialog
-                open={editBookDialogOpen}
-                onClose={() => setEditBookDialogOpen(false)}
-                book={book}
+            <EditCountryDialog
+                open={editCountryDialogOpen}
+                onClose={() => setEditCountryDialogOpen(false)}
+                country={country}
                 onEdit={onEdit}
             />
-            <DeleteBookDialog
-                open={deleteBookDialogOpen}
-                onClose={() => setDeleteBookDialogOpen(false)}
-                book={book}
+            <DeleteCountryDialog
+                open={deleteCountryDialogOpen}
+                onClose={() => setDeleteCountryDialogOpen(false)}
+                country={country}
                 onDelete={onDelete}
             />
         </>
     );
 };
 
-export default BookCard;
+export default CountryCard;

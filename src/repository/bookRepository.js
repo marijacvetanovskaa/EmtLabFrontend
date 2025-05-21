@@ -15,17 +15,7 @@ const bookRepository = {
     },
     delete: async (id) => {
         return await axiosInstance.delete(`/books/delete/${id}`);
-    },
-    getBooksByAuthor: async () => {
-        return await axiosInstance.get("/books/by-author")
-    },
-    rentBook: async (id) => {
-        return await axiosInstance.put(`/books/rent/${id}`)
-    },
-    addCopy: async (id) => {
-        return await axiosInstance.put(`/books/add-copy/${id}`)
     }
-
 };
 
 export default bookRepository;

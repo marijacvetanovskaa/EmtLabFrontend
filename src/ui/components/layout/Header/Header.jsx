@@ -7,6 +7,8 @@ import "./Header.css";
 const pages = [
     {"path": "/", "name": "home"},
     {"path": "/books", "name": "books"},
+    {"path": "/authors", "name": "authors"},
+    {"path": "/countries", "name": "countries"}
 ];
 
 const Header = () => {
@@ -24,7 +26,7 @@ const Header = () => {
                         <MenuIcon/>
                     </IconButton>
                     <Typography variant="h6" component="div" sx={{mr: 3}}>
-                        E-SHOP
+                        LIBRARY
                     </Typography>
                     <Box sx={{flexGrow: 1, display: {xs: "none", md: "flex"}}}>
                         {pages.map((page) => (

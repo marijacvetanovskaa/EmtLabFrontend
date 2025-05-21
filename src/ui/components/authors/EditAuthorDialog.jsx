@@ -9,27 +9,14 @@ import {
     InputLabel, MenuItem, Select,
     TextField
 } from "@mui/material";
-import useAuthors from "../../../hooks/useAuthors.js";
 import useCountries from "../../../hooks/useCountries.js";
 
-const categories = [
-    "NOVEL",
-    "THRILLER",
-    "HISTORY",
-    "FANTASY",
-    "BIOGRAPHY",
-    "CLASSICS",
-    "DRAMA"
-]
-
-const EditBookDialog = ({open, onClose, book, onEdit}) => {
+const EditAuthorDialog = ({open, onClose, author, onEdit}) => {
     const [formData, setFormData] = useState({
-        "name": book.name,
-        "category": book.category,
-        "author": book.author,
-        "country": book.country,
+        "name": author.name,
+        "surname": author.surname,
+        "country": author.country,
     });
-    const authors = useAuthors();
     const countries = useCountries();
 
     const handleChange = (event) => {
@@ -38,14 +25,14 @@ const EditBookDialog = ({open, onClose, book, onEdit}) => {
     };
 
     const handleSubmit = () => {
-        onEdit(book.id, formData);
+        onEdit(author.id, formData);
         setFormData(formData);
         onClose();
     };
 
     return (
       <Dialog open={open} onClose={onClose}>
-          <DialogTitle>Edit Book</DialogTitle>
+          <DialogTitle>Edit Author</DialogTitle>
           <DialogContent>
               <TextField
                 margin="dense"
@@ -55,32 +42,14 @@ const EditBookDialog = ({open, onClose, book, onEdit}) => {
                 onChange={handleChange}
                 fullWidth
               />
-              <FormControl fullWidth margin="dense">
-                  <InputLabel>Category</InputLabel>
-                  <Select
-                    name="category"
-                    value={formData.category}
-                    onChange={handleChange}
-                    label="Author"
-                    variant="outlined">
-                      {categories.map((category) => (
-                        <MenuItem key={category} value={category}>{category}</MenuItem>
-                      ))}
-                  </Select>
-              </FormControl>
-              <FormControl fullWidth margin="dense">
-                  <InputLabel>Author</InputLabel>
-                  <Select
-                    name="author"
-                    value={formData.author}
-                    onChange={handleChange}
-                    label="Author"
-                    variant="outlined">
-                      {authors.authors.map((author) => (
-                        <MenuItem key={author.id} value={author.id}>{author.name + " " + author.surname}</MenuItem>
-                      ))}
-                  </Select>
-              </FormControl>
+              <TextField
+                margin="dense"
+                label="Surname"
+                name="surname"
+                value={formData.surname}
+                onChange={handleChange}
+                fullWidth
+              />
               <FormControl fullWidth margin="dense">
                   <InputLabel>Country</InputLabel>
                   <Select
@@ -103,4 +72,4 @@ const EditBookDialog = ({open, onClose, book, onEdit}) => {
     );
 };
 
-export default EditBookDialog;
+export default EditAuthorDialog;

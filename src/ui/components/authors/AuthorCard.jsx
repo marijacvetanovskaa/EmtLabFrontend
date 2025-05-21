@@ -2,19 +2,18 @@ import React, {useState} from 'react';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {Box, Button, Card, CardActions, CardContent, Typography} from "@mui/material";
-import EditBookDialog from "./EditBookDialog.jsx";
-import DeleteBookDialog from "./DeleteBookDialog.jsx";
+import EditAuthorDialog from "./EditAuthorDialog.jsx";
+import DeleteAuthorDialog from "./DeleteAuthorDialog.jsx";
 
-const BookCard = ({book, onEdit, onDelete}) => {
-    const [editBookDialogOpen, setEditBookDialogOpen] = useState(false);
-    const [deleteBookDialogOpen, setDeleteBookDialogOpen] = useState(false);
+const AuthorCard = ({author, onEdit, onDelete}) => {
+    const [editAuthorDialogOpen, setEditAuthorDialogOpen] = useState(false);
+    const [deleteAuthorDialogOpen, setDeleteAuthorDialogOpen] = useState(false);
 
     return (
         <>
             <Card sx={{boxShadow: 3, borderRadius: 2, p: 1}}>
                 <CardContent>
-                    <Typography variant="h5">{book.name}</Typography>
-                    <Typography variant="subtitle2">{book.category}</Typography>
+                    <Typography variant="h5">{author.name + " " + author.surname}</Typography>
                 </CardContent>
                 <CardActions sx={{justifyContent: "space-between"}}>
                     <Box>
@@ -23,7 +22,7 @@ const BookCard = ({book, onEdit, onDelete}) => {
                             color="warning"
                             startIcon={<EditIcon/>}
                             sx={{mr: "0.25rem"}}
-                            onClick={() => setEditBookDialogOpen(true)}
+                            onClick={() => setEditAuthorDialogOpen(true)}
                         >
                             Edit
                         </Button>
@@ -31,27 +30,27 @@ const BookCard = ({book, onEdit, onDelete}) => {
                             size="small"
                             color="error"
                             startIcon={<DeleteIcon/>}
-                            onClick={() => setDeleteBookDialogOpen(true)}
+                            onClick={() => setDeleteAuthorDialogOpen(true)}
                         >
                             Delete
                         </Button>
                     </Box>
                 </CardActions>
             </Card>
-            <EditBookDialog
-                open={editBookDialogOpen}
-                onClose={() => setEditBookDialogOpen(false)}
-                book={book}
+            <EditAuthorDialog
+                open={editAuthorDialogOpen}
+                onClose={() => setEditAuthorDialogOpen(false)}
+                author={author}
                 onEdit={onEdit}
             />
-            <DeleteBookDialog
-                open={deleteBookDialogOpen}
-                onClose={() => setDeleteBookDialogOpen(false)}
-                book={book}
+            <DeleteAuthorDialog
+                open={deleteAuthorDialogOpen}
+                onClose={() => setDeleteAuthorDialogOpen(false)}
+                author={author}
                 onDelete={onDelete}
             />
         </>
     );
 };
 
-export default BookCard;
+export default AuthorCard;

@@ -10,28 +10,15 @@ import {
     TextField
 } from "@mui/material";
 import useCountries from "../../../hooks/useCountries.js";
-import useAuthors from "../../../hooks/useAuthors.js";
 
 const initialFormData = {
     "name": "",
-    "category": "",
-    "author": "",
+    "surname": "",
     "country": "",
 };
 
-const categories = [
-    "NOVEL",
-    "THRILLER",
-    "HISTORY",
-    "FANTASY",
-    "BIOGRAPHY",
-    "CLASSICS",
-    "DRAMA"
-]
-
-const AddBookDialog = ({open, onClose, onAdd}) => {
+const AddAuthorDialog = ({open, onClose, onAdd}) => {
     const [formData, setFormData] = useState(initialFormData);
-    const authors = useAuthors();
     const countries = useCountries();
 
     const handleChange = (event) => {
@@ -47,7 +34,7 @@ const AddBookDialog = ({open, onClose, onAdd}) => {
 
     return (
         <Dialog open={open} onClose={onClose}>
-            <DialogTitle>Add Book</DialogTitle>
+            <DialogTitle>Add Author</DialogTitle>
             <DialogContent>
                 <TextField
                     margin="dense"
@@ -57,32 +44,14 @@ const AddBookDialog = ({open, onClose, onAdd}) => {
                     onChange={handleChange}
                     fullWidth
                 />
-                <FormControl fullWidth margin="dense">
-                    <InputLabel>Category</InputLabel>
-                    <Select
-                        name="category"
-                        value={formData.category}
-                        onChange={handleChange}
-                        label="Author"
-                        variant="outlined">
-                        {categories.map((category) => (
-                            <MenuItem key={category} value={category}>{category}</MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
-                <FormControl fullWidth margin="dense">
-                    <InputLabel>Author</InputLabel>
-                    <Select
-                        name="author"
-                        value={formData.author}
-                        onChange={handleChange}
-                        label="Author"
-                        variant="outlined">
-                        {authors.authors.map((author) => (
-                            <MenuItem key={author.id} value={author.id}>{author.name + " " + author.surname}</MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
+                <TextField
+                  margin="dense"
+                  label="Surname"
+                  name="surname"
+                  value={formData.surname}
+                  onChange={handleChange}
+                  fullWidth
+                />
                 <FormControl fullWidth margin="dense">
                     <InputLabel>Country</InputLabel>
                     <Select
@@ -105,4 +74,4 @@ const AddBookDialog = ({open, onClose, onAdd}) => {
     );
 };
 
-export default AddBookDialog;
+export default AddAuthorDialog;
